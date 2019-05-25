@@ -1,24 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jsV-mB-biw">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="MarkMyDoctor" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP2-ky-TEv">
+                                <rect key="frame" x="124" y="617" width="127" height="30"/>
+                                <state key="normal" title="Orvos hozzáadása"/>
+                                <connections>
+                                    <segue destination="JfS-Vg-0Ia" kind="show" id="4dy-Jp-YEp"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GP2-ky-TEv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gtg-uE-shT"/>
+                            <constraint firstAttribute="bottom" secondItem="GP2-ky-TEv" secondAttribute="bottom" constant="20" symbolic="YES" id="pgA-9O-Jlx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Tu3-MI-z9F"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-780" y="115.59220389805098"/>
+        </scene>
+        <!--Add Doctor View Controller-->
+        <scene sceneID="gOw-Ak-s6y">
+            <objects>
+                <viewController id="JfS-Vg-0Ia" customClass="AddDoctorViewController" customModule="MarkMyDoctor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f3o-zG-Y4o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Név" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqK-gy-Nl1">
+                                <rect key="frame" x="168" y="92" width="39" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-cp-459">
+                                <rect key="frame" x="64" y="144" width="245" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXY-go-bXF">
+                                <rect key="frame" x="64" y="244" width="245" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Szervezet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qaf-ee-UCM">
+                                <rect key="frame" x="140.5" y="206" width="94" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuH-6C-dx4">
+                                <rect key="frame" x="120" y="341" width="134" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Hozzáadás"/>
+                                <connections>
+                                    <action selector="addDoctor:" destination="JfS-Vg-0Ia" eventType="touchUpInside" id="omB-R3-e2S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jXY-go-bXF" firstAttribute="top" secondItem="Qaf-ee-UCM" secondAttribute="bottom" constant="11" id="3H3-B8-5ua"/>
+                            <constraint firstItem="VuH-6C-dx4" firstAttribute="leading" secondItem="V9x-zI-JsC" secondAttribute="leading" constant="120" id="BUx-rb-fMd"/>
+                            <constraint firstItem="VuH-6C-dx4" firstAttribute="top" secondItem="jXY-go-bXF" secondAttribute="bottom" constant="67" id="Odc-ns-NqX"/>
+                            <constraint firstItem="uqK-gy-Nl1" firstAttribute="centerX" secondItem="V9x-zI-JsC" secondAttribute="centerX" id="SpN-ur-bmI"/>
+                            <constraint firstItem="Qaf-ee-UCM" firstAttribute="top" secondItem="V9x-zI-JsC" secondAttribute="top" constant="142" id="WVV-sd-Q6g"/>
+                            <constraint firstItem="Qaf-ee-UCM" firstAttribute="centerX" secondItem="V9x-zI-JsC" secondAttribute="centerX" id="Zi8-5W-1JF"/>
+                            <constraint firstItem="5DH-cp-459" firstAttribute="leading" secondItem="V9x-zI-JsC" secondAttribute="leading" constant="64" id="Zps-1T-r18"/>
+                            <constraint firstItem="V9x-zI-JsC" firstAttribute="trailing" secondItem="jXY-go-bXF" secondAttribute="trailing" constant="66" id="agT-W1-Lb4"/>
+                            <constraint firstItem="uqK-gy-Nl1" firstAttribute="top" secondItem="V9x-zI-JsC" secondAttribute="top" constant="28" id="bVb-wP-A3Z"/>
+                            <constraint firstItem="jXY-go-bXF" firstAttribute="leading" secondItem="V9x-zI-JsC" secondAttribute="leading" constant="64" id="d4j-i1-fdD"/>
+                            <constraint firstItem="V9x-zI-JsC" firstAttribute="trailing" secondItem="VuH-6C-dx4" secondAttribute="trailing" constant="121" id="sKP-dQ-jZ3"/>
+                            <constraint firstItem="V9x-zI-JsC" firstAttribute="trailing" secondItem="5DH-cp-459" secondAttribute="trailing" constant="66" id="wqr-zK-95p"/>
+                            <constraint firstItem="5DH-cp-459" firstAttribute="top" secondItem="uqK-gy-Nl1" secondAttribute="bottom" constant="25" id="xd5-zb-lLQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="V9x-zI-JsC"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameTF" destination="5DH-cp-459" id="qEr-hx-1qy"/>
+                        <outlet property="orgTF" destination="jXY-go-bXF" id="aK2-La-7Bj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6XK-kH-FGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="115.59220389805098"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1qR-sA-04w">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jsV-mB-biw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D88-RI-GyK">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="i0d-tW-z4P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qFX-x2-esQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1614" y="117"/>
         </scene>
     </scenes>
 </document>
