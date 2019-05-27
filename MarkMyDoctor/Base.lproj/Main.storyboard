@@ -18,22 +18,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GP2-ky-TEv">
-                                <rect key="frame" x="124" y="617" width="127" height="30"/>
-                                <state key="normal" title="Orvos hozzáadása"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MqF-g9-Q1Z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="JfS-Vg-0Ia" kind="show" id="4dy-Jp-YEp"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="QjX-Ky-rWj"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7bO-VV-GFp"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GP2-ky-TEv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gtg-uE-shT"/>
-                            <constraint firstAttribute="bottom" secondItem="GP2-ky-TEv" secondAttribute="bottom" constant="20" symbolic="YES" id="pgA-9O-Jlx"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Vz-pD-pyN"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="I6q-zg-jSc"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Jzl-gh-fXx"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qwt-me-Z9H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Tu3-MI-z9F"/>
+                    <navigationItem key="navigationItem" id="Tu3-MI-z9F">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xnD-oh-27O">
+                            <connections>
+                                <segue destination="JfS-Vg-0Ia" kind="show" id="Qc2-TV-dxy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="MqF-g9-Q1Z" id="tF7-u9-gms"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
