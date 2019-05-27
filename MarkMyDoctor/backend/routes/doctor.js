@@ -14,7 +14,6 @@ router.get("", (req, res, next) => {
   }*/
   doctorQuery.then(documents => {
     fetchedDoctors = documents;
-    console.log(documents)
     return Doctor.countDocuments();
   })
   .then(count => {
@@ -61,18 +60,18 @@ router.get("/:id", (req, res, next) => {
 router.post("", (req, res, next) => {
   name=req.body.name;
   organization=req.body.org;
-  Rate.findOne({name:name,organization:organization})
+  Doctor.findOne({name:name,organization:organization})
   .then(doctorData => {
     if(!doctorData){
       const doctor= new Doctor({name:name,organization:organization});
       doctor.save(result =>{
         res.status(201).json({
-          message: "Doctor added"
+          message: "A doktor hozzá lett adva!"
         })
       })
     } else {
       res.status(403).json({
-        message: "This doctor is in the database!"
+        message: "Ez a doktor ezzel a név/szervezet kombinációval már szerepel az adatbázisban!"
       })
     }
   })
