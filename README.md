@@ -7,9 +7,19 @@
  * Orvos értékelése
  * Orvosok kilistázása szervezetek szerint
 
+### Tervezett funkciók
+* Orvosok rendezése az értékelések alapján
+* Online elérhetőség
+
 ### Telepítés/Futtatás
 Az adatbázis eléréséhez mindenképp szükséges egy npm install a backend mappában majd node-dal a szerver futtatása (localhost). Ezután xcode seg0tségével le kell buildelni a swift programot és virtuális iPhone-on elindítani.
+
+### Fejlesztő
+* Szabó Tamás
+* h775260@stud.u-szeged.hu / szabotomika97@gmail.com
 
 ## Képernyőtervek
 ![pictrue1](images/1.png) ![pictrue2](images/2.png)
 ![pictrue3](images/3.png) ![pictrue4](images/4.png)
+
+
