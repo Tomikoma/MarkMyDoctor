@@ -11,5 +11,5 @@
 Az adatbázis eléréséhez mindenképp szükséges egy npm install a backend mappában majd node-dal a szerver futtatása (localhost). Ezután xcode seg0tségével le kell buildelni a swift programot és virtuális iPhone-on elindítani.
 
 ## Képernyőtervek
-![pictrue](images/1.png) ![pictrue](images/2.png)
-![pictrue](images/3.png) ![pictrue](images/4.png)
+![pictrue1](images/1.png) ![pictrue2](images/2.png)
+![pictrue3](images/3.png) ![pictrue4](images/4.png)
