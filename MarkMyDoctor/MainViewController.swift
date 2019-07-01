@@ -9,6 +9,7 @@
 import UIKit
 
 struct Doctor: Decodable {
+    let _id: String
     let name: String
     let organization: String
 }
@@ -24,6 +25,8 @@ class MainViewController: UIViewController {
     
 
     var doctors: [Doctor] = []
+    var currentDoctor: Doctor?
+    var sem = DispatchSemaphore.init(value: 1)
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -65,7 +68,6 @@ class MainViewController: UIViewController {
             if let data = data {
                 do {
                     let myjson = try JSONDecoder().decode(MyJson.self, from: data)
-                    print(myjson.doctors)
                     doctors = myjson.doctors
                 } catch {
                     print(error)
@@ -91,6 +93,14 @@ class MainViewController: UIViewController {
         if let addvc = destinationvc as? AddDoctorViewController {
             addvc.navigationItem.title = "Orvos Hozzáadása"
         }
+        if let doctorvc = destinationvc as? DoctorViewController {
+            if let doc = currentDoctor {
+                doctorvc.navigationItem.title = doc.name
+                doctorvc.doctor = doc
+            }
+        }
+        
+        
         
         
         
@@ -105,9 +115,21 @@ extension MainViewController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let doctor = doctors[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath)
         cell.textLabel?.text = doctor.name
+        cell.detailTextLabel?.text = doctor.organization
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentDoctor = doctors[indexPath.row]
+        let destinationvc = DoctorViewController()
+        if let dc = currentDoctor {
+            destinationvc.doctor = dc
+            self.performSegue(withIdentifier: "doctorSegue", sender: dc)
+            
+        }
+       
     }
     
     

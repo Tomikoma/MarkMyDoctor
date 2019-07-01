@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A007D5C02299AEDA00262E97 /* AddDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A007D5BF2299AEDA00262E97 /* AddDoctorViewController.swift */; };
+		A008ABAB229C3117000CBB71 /* DoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A008ABAA229C3117000CBB71 /* DoctorViewController.swift */; };
 		A0D0F32422940D33009A4989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0F32322940D33009A4989 /* AppDelegate.swift */; };
 		A0D0F32622940D33009A4989 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0F32522940D33009A4989 /* MainViewController.swift */; };
 		A0D0F32922940D33009A4989 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0D0F32722940D33009A4989 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		A007D5BF2299AEDA00262E97 /* AddDoctorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoctorViewController.swift; sourceTree = "<group>"; };
+		A008ABAA229C3117000CBB71 /* DoctorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorViewController.swift; sourceTree = "<group>"; };
 		A0D0F32022940D33009A4989 /* MarkMyDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMyDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D0F32322940D33009A4989 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0D0F32522940D33009A4989 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				A0D0F32C22940D34009A4989 /* LaunchScreen.storyboard */,
 				A0D0F32F22940D34009A4989 /* Info.plist */,
 				A007D5BF2299AEDA00262E97 /* AddDoctorViewController.swift */,
+				A008ABAA229C3117000CBB71 /* DoctorViewController.swift */,
 			);
 			path = MarkMyDoctor;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				A007D5C02299AEDA00262E97 /* AddDoctorViewController.swift in Sources */,
 				A0D0F32622940D33009A4989 /* MainViewController.swift in Sources */,
 				A0D0F32422940D33009A4989 /* AppDelegate.swift in Sources */,
+				A008ABAB229C3117000CBB71 /* DoctorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

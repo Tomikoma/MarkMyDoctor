@@ -77,63 +77,87 @@ router.post("", (req, res, next) => {
   })
 });
 
-/*
 router.post("/rate", (req, res, next) => {
-  userId=req.userData.userId;
-  gameId=req.body.gameId;
-  rating=req.body.rating;
-  Rate.findOne({userId:userId,gameId:gameId})
+  id = req.body.id
+  uuid = req.body.uuid
+  exp = req.body.exp
+  kindness = req.body.kindness
+  price = req.body.price
+  sexiness = req.body.sexiness
+  Rate.findOne({doctorId:id,uuid:uuid})
   .then(rateData => {
     if(!rateData){
-      const rate= new Rate({userId:userId,gameId:gameId,rating:rating});
-      rate.save(result =>{
+      const rate = new Rate({doctorId:id,uuid:uuid,experience:exp,kindness:kindness,price:price,sexiness:sexiness});
+      rate.save(result => {
+        console.log(result)
         res.status(201).json({
-          message: "Game got rated"
-        })
+          message: "Az értékelés sikeresen el lett mentve!"
+        });
       })
     } else {
-      const rate = new Rate({_id: rateData._id, userId:userId,gameId:gameId,rating:rating});
-      rateId=rateData._id;
-      Rate.findByIdAndUpdate({_id:rateId},{rating:rating})
-        .then(result => {
-          if(result.nModified === 0){
-            res.status(500).json({
-              message:"Couldn't update the rating"
-            });
-          } else {
-            res.status(202).json({
-              message:"Game rating updated"
-            });
-          }
-        });
+      rateId = rateData._id
+      Rate.findByIdAndUpdate({_id:rateId},{experience:exp,kindness:kindness,price:price,sexiness:sexiness})
+      .then(result => {
+        if(result.nModified === 0){
+          res.status(500).json({
+            message:"Nem sikerült módosítani az értékelést!"
+          });
+        } else {
+          res.status(202).json({
+            message:"Értékelés sikeresen módosítva!"
+          });
+        }
+      });
     }
-  })
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({
+      message: "Belső hiba lépett fel az értékelés elmentése közben!"
+    });
+  });
+
 });
 
 router.get("/rate/:id", (req, res, next) => {
-  gameId=req.params.id;
-  Rate.find({gameId:gameId})
+  doctorId=req.params.id;
+  Rate.find({doctorId:doctorId})
     .then(result => {
       if(!result[0]) {
 
         res.status(200).json({
-          rating: 0,
+          exp: 0,
+          price: 0,
+          kindness: 0,
+          sexiness: 0,
           count: 0
         });
       } else {
         Rate.aggregate(
     [
       {$match: {}},
-      {$group: {_id:"$gameId", total: {$avg: "$rating"} } }
+      {$group: {_id:"$doctorId", exp: {$avg: "$experience"}, price: {$avg: "$price"}, kindness: {$avg: "$kindness"}, sexiness: {$avg: "$sexiness"} } }
     ]
   ).then(result =>{
-    const rating = result.filter(function(res){
-      return res._id == gameId;
-    })[0].total;
-    Rate.countDocuments({gameId: gameId})
+    const exp = result.filter(function(res){
+      return res._id == doctorId;
+    })[0].exp;
+    const price = result.filter(function(res){
+      return res._id == doctorId;
+    })[0].price;
+    const kindness = result.filter(function(res){
+      return res._id == doctorId;
+    })[0].kindness;
+    const sexiness = result.filter(function(res){
+      return res._id == doctorId;
+    })[0].sexiness;
+
+    Rate.countDocuments({doctorId: doctorId})
     .then(countData => {
       res.status(200).json({
-        rating:rating,
+        exp:exp,
+        price: price,
+        kindness: kindness,
+        sexiness:sexiness,
         count: countData
       });
     }).catch(err => {
@@ -157,5 +181,5 @@ router.get("/rate/:id", (req, res, next) => {
     })
 
 
-});*/
+});
 module.exports = router;
