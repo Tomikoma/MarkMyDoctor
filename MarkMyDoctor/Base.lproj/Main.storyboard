@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MqF-g9-Q1Z">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="458"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" textLabel="kFl-fS-n4d" detailTextLabel="5Zc-Am-nmF" style="IBUITableViewCellStyleValue1" id="4S9-aw-leQ">
@@ -52,13 +52,20 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="7bO-VV-GFp"/>
                                 </connections>
                             </tableView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7F-TX-F0f">
+                                <rect key="frame" x="0.0" y="518" width="375" height="149"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Vz-pD-pyN"/>
-                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="I6q-zg-jSc"/>
-                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Jzl-gh-fXx"/>
-                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qwt-me-Z9H"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="trailing" secondItem="T7F-TX-F0f" secondAttribute="trailing" id="9ic-8l-PX3"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Abd-RD-WVC"/>
+                            <constraint firstItem="T7F-TX-F0f" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Amn-uX-8qO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MqF-g9-Q1Z" secondAttribute="bottom" constant="145" id="IQA-Ef-Vrc"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Su8-T4-B6d"/>
+                            <constraint firstItem="MqF-g9-Q1Z" firstAttribute="leading" secondItem="T7F-TX-F0f" secondAttribute="leading" id="YMV-BK-Y2T"/>
+                            <constraint firstItem="T7F-TX-F0f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="454" id="gyv-Ky-xgU"/>
+                            <constraint firstAttribute="trailing" secondItem="MqF-g9-Q1Z" secondAttribute="trailing" id="uEX-f1-8mD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -70,6 +77,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="orgPickerView" destination="T7F-TX-F0f" id="bcX-fF-GE5"/>
                         <outlet property="tableView" destination="MqF-g9-Q1Z" id="tF7-u9-gms"/>
                         <segue destination="xhN-eF-g9E" kind="show" identifier="doctorSegue" id="bNj-ET-unj"/>
                     </connections>

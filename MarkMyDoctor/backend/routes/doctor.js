@@ -24,6 +24,22 @@ router.get("", (req, res, next) => {
     });
   })
 });
+
+router.get("/org", (req, res, next) => {
+  Doctor.distinct("organization")
+  .then(orgData => {
+    res.status(200).json({
+      organizations: orgData
+    });
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({
+      message: "Belső hiba lépett fel az adatok lekérdezése közben!"
+    })
+  })
+});
+
 /*
 router.get("/years", (req, res, next) => {
   Game.distinct("releaseDate")

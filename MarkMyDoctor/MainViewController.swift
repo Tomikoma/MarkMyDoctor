@@ -21,14 +21,19 @@ struct MyJson: Decodable {
 
 }
 
+struct Org: Decodable {
+    let organizations: [String]
+}
+
 class MainViewController: UIViewController {
     
-
     var doctors: [Doctor] = []
+    var organizations: [String] = []
     var currentDoctor: Doctor?
     var sem = DispatchSemaphore.init(value: 1)
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var orgPickerView: UIPickerView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,12 +42,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //print(UIDevice.current.identifierForVendor!.uuidString)
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        fetchOrganizations()
         fetchDoctors()
+        
+        orgPickerView.dataSource = self
+        orgPickerView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +57,33 @@ class MainViewController: UIViewController {
     
     
 
+    func fetchOrganizations(){
+        guard let url = URL(string: "http://localhost:3000/api/doctor/org") else { return }
+        let session = URLSession.shared
+        //var doctors: [Doctor] = []
+        let sem = DispatchSemaphore.init(value: 0)
+        
+        session.dataTask(with: url) { (data, response, error) in
+            if let response = response {
+                //print(response)
+            }
+            
+            if let data = data {
+                do {
+                    let myjson = try JSONDecoder().decode(Org.self, from: data)
+                    self.organizations = myjson.organizations
+                } catch {
+                    print(error)
+                }
+                sem.signal()
+                
+            }
+            }.resume()
+        sem.wait()
+        //self.doctors = doctors
+        //tableView.reloadData()
 
+    }
     
     func fetchDoctors() {
         guard let url = URL(string: "http://localhost:3000/api/doctor") else { return }
@@ -133,5 +164,23 @@ extension MainViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     
+}
+
+extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return organizations.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(organizations[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return organizations[row]
+    }
 }
 
