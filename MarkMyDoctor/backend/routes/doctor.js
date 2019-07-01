@@ -4,26 +4,7 @@ const Rate=require('../models/rate');
 const router = express.Router();
 
 
-router.get("", (req, res, next) => {
-  const doctorQuery = Doctor.find();
-  let fetchedDoctors;
-  /*if (pageSize && currentPage){
-    gameQuery
-      .skip(pageSize * (currentPage - 1))
-      .limit(pageSize);
-  }*/
-  doctorQuery.then(documents => {
-    fetchedDoctors = documents;
-    return Doctor.countDocuments();
-  })
-  .then(count => {
-    res.status(200).json({
-      message: "Doctors fetched successfully!",
-      doctors: fetchedDoctors,
-      maxDoctors: count
-    });
-  })
-});
+
 
 router.get("/org", (req, res, next) => {
   Doctor.distinct("organization")
@@ -40,38 +21,6 @@ router.get("/org", (req, res, next) => {
   })
 });
 
-/*
-router.get("/years", (req, res, next) => {
-  Game.distinct("releaseDate")
-  .then(result => {
-    res.status(200).json({
-      years:result
-    })
-  }).catch(err => {
-    console.log(err);
-    res.status(500).json({
-      message: "Something went wrong!"
-    });
-  })
-});
-
-router.get("/:id", (req, res, next) => {
-  gameId= req.params.id;
-  let game;
-  Game.findById(gameId)
-    .then(gameData => {
-      game = gameData;
-      res.status(200).json({
-        game: game
-      });
-    }).catch(err => {
-      console.log(err);
-      res.status(500).json({
-        message: "Something went wrong!"
-      })
-    });
-
-});*/
 
 router.post("", (req, res, next) => {
   name=req.body.name;
@@ -132,6 +81,29 @@ router.post("/rate", (req, res, next) => {
     });
   });
 
+});
+
+router.post("/organization", (req, res, next) => {
+  const doctorQuery = Doctor.find({organization:req.body.organization});
+  let fetchedDoctors;
+
+  /*Rate.find().populate("doctorId").exec(function (err, doc) {
+    if (err) return handleError(err);
+    console.log(doc);
+    // prints "The author is Ian Fleming"
+  });*/ 
+  doctorQuery.then(documents => {
+    fetchedDoctors = documents;
+    return Doctor.countDocuments();
+  })
+  .then(count => {
+    
+    res.status(200).json({
+      message: "Doctors fetched successfully!",
+      doctors: fetchedDoctors,
+      maxDoctors: count
+    });
+  })
 });
 
 router.get("/rate/:id", (req, res, next) => {

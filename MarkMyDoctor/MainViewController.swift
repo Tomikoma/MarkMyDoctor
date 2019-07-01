@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
     
     var doctors: [Doctor] = []
     var organizations: [String] = []
+    var currentOrg: String?
     var currentDoctor: Doctor?
     var sem = DispatchSemaphore.init(value: 1)
     
@@ -44,7 +45,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         fetchOrganizations()
-        fetchDoctors()
+        currentOrg = organizations.first!
+        fetchDoctors(organizations.first!)
         
         orgPickerView.dataSource = self
         orgPickerView.delegate = self
@@ -52,7 +54,8 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchDoctors()
+        fetchOrganizations()
+        fetchDoctors(currentOrg!)
     }
     
     
@@ -85,30 +88,32 @@ class MainViewController: UIViewController {
 
     }
     
-    func fetchDoctors() {
-        guard let url = URL(string: "http://localhost:3000/api/doctor") else { return }
-        let session = URLSession.shared
-        var doctors: [Doctor] = []
-        let sem = DispatchSemaphore.init(value: 0)
+    func fetchDoctors(_ organization: String) {
+        let parameters: [String:Any] = ["organization" : organization]
+        guard let url = URL(string: "http://localhost:3000/api/doctor/organization") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters , options: [] ) else {
+            //makeAlert(title:"Hiba", msg: "Hiba történt a doktor hozzáadása közben!")
+            return
+        }
+        request.httpBody = httpBody
         
-        session.dataTask(with: url) { (data, response, error) in
-            if let response = response {
-                //print(response)
-            }
-            
+        let session = URLSession.shared
+        let sem = DispatchSemaphore.init(value: 0)
+        session.dataTask(with: request) { (data,response,error) in
             if let data = data {
                 do {
-                    let myjson = try JSONDecoder().decode(MyJson.self, from: data)
-                    doctors = myjson.doctors
+                    let json = try JSONDecoder().decode(MyJson.self, from: data)
+                    self.doctors = json.doctors
                 } catch {
                     print(error)
                 }
-            sem.signal()
-                
             }
+            sem.signal()
             }.resume()
         sem.wait()
-        self.doctors = doctors
         tableView.reloadData()
     }
     
@@ -177,6 +182,8 @@ extension MainViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(organizations[row])
+        currentOrg = organizations[row]
+        fetchDoctors(organizations[row])
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

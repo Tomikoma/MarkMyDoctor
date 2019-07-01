@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 const rateSchema = mongoose.Schema({
-  doctorId: { type: mongoose.Schema.Types.ObjectId, required: true},
+  doctorId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Doctor"},
   uuid: {type: String, required: true},
   experience: { type: Number, required: true},
   kindness: { type: Number, required: true},
